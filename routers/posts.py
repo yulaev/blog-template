@@ -7,12 +7,12 @@ router = APIRouter(
     tags=["posts"]
 )
 
-@router.post("")
+@router.post("/create-post")
 async def r_create_post(item: Item):
     with get_session() as session:
         create_post(item, session)
     
-@router.delete("/{id}")
+@router.delete("/delete-post")
 async def r_delete_post(id:int):
     with get_session() as session:
         delete_post(id, session)
@@ -24,7 +24,7 @@ async def r_show_posts(limit: int = 10):
 
     return posts
     
-@router.put("/edit_post")
+@router.put("/edit-post")
 async def r_edit_post(data: dict):
     with get_session() as session:
         edit_post(data, session)
